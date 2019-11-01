@@ -46,17 +46,12 @@ document.getElementById('table').addEventListener("drop", (e) => {
     e.preventDefault();
 
     // TODO: Add an input to reformat this
-    const regExFormatter = /(\[|\/|])/g;
+    const regExFormatter = /([\[\/\]:])/g;
 
-    // TODO: Add a widget to define columns and their regex match
-    // TODO: Maybe match the whole line, with a big regex then loop the groups to put them in columns
-    const regExGroups = {
-        "time": /(\[([0-9]+:?)+])/g,
-        "thread": /(\[[a-zA-Z]+\/)/g,
-        "level": /(\/[A-Z]+])/g,
-        "class": /(\[[A-Z][a-zA-Z]+])/g,
-        "info": /(: .*)/g
-    };
+    // TODO: Add an input to define the columns
+    const regEx = /\[([0-9]+:[0-9]+:[0-9]+)] \[([a-zA-Z]+)\/([A-Z]+)[\]]?( \[[A-Za-z]+]: |: ):?(.*)/g;
+
+    const columns = ['time', 'thread', 'level', 'class', 'info'];
 
     const fileList = e.dataTransfer.files;
 
@@ -68,19 +63,20 @@ document.getElementById('table').addEventListener("drop", (e) => {
                 let data = [];
 
                 for (let [index, line] of reader.result.split("\r\n").slice(0, 8).entries()) {
-                    document.getElementById("text").append(line);
+                    document.getElementById("text").append(line, document.createElement("br"));
 
                     let dataEntry = {id: index};
-
-                    for (let [key, value] of Object.entries(regExGroups)) {
-                        if (line.match(value) != null) {
-                            // TODO: Drop matched sections off the main string
-                            for (let match of line.match(value)) {
+                    
+                    let match;
+                    do {
+                        match = regEx.exec(line);
+                        if (match) {
+                            for (let [key, value] of match.slice(1).entries()) {
                                 // @ts-ignore
-                                dataEntry[key] = match.replace(regExFormatter, "");
+                                dataEntry[columns[key]] = value.replace(regExFormatter, " ");
                             }
                         }
-                    }
+                    } while (match);
 
                     data.push(dataEntry);
                 }
