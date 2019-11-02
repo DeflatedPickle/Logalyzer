@@ -21,3 +21,9 @@ window.addEventListener("drop", (e)->
     e.dataTransfer.effectAllowed = "none"
     e.dataTransfer.dropEffect = "none"
 )
+
+# Other Listeners
+window.addEventListener('DOMContentLoaded', ->
+  document.getElementById('start-rows').value = 0
+  document.getElementById('end-rows').value = 60
+)

@@ -7,14 +7,14 @@ const regex = require("../json/regex.json");
 // Scripts
 require("../coffee/index.coffee");
 // Stylesheets
-const style = require("../scss/index.scss");
+require("../scss/index.scss");
 
 const table = new tabulator("#table", {
-    height: 200,
+    height: 400,
     data: [],
     layout: "fitData",
     columns: [],
-    placeholder:"<center>Please, Tabulate Me.</center><br/> Then Kindly Drop A File On Me.",
+    placeholder: "Feed Me File.",
 });
 
 function emptyTable(table: Tabulator, newColumn: boolean = false) {
@@ -27,6 +27,7 @@ function emptyTable(table: Tabulator, newColumn: boolean = false) {
         table.addColumn({title: "", field: ""});
     }
 }
+
 emptyTable(table, true);
 
 // Event Listeners
@@ -74,11 +75,18 @@ document.getElementById('table').addEventListener("drop", (e) => {
 
         reader.addEventListener("loadend", () => {
             if (typeof reader.result === "string") {
+                // @ts-ignore
+                document.getElementById("text").value = "";
+
                 let data = [];
 
-                for (let [index, line] of reader.result.split("\r\n").slice(0, 8).entries()) {
-                    console.log(line);
-                    document.getElementById("text").append(line, document.createElement("br"));
+                const start = +(<HTMLInputElement>document.getElementById('start-rows')).value;
+                const limit = +(<HTMLInputElement>document.getElementById('end-rows')).value;
+
+                for (let [index, line] of reader.result.split("\r\n").slice(start, limit).entries()) {
+                    // @ts-ignore
+                    document.getElementById("text").value += line;
+                    // document.createElement("br");
 
                     let dataEntry = {id: index};
 
