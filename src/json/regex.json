@@ -1,0 +1,12 @@
+{
+  "custom": {
+    "pattern": "",
+    "formatter": "",
+    "columns": ""
+  },
+  "forge": {
+    "pattern": "\\[([0-9]+:[0-9]+:[0-9]+)] \\[([a-zA-Z]+)\\/([A-Z]+)[\\]]?( \\[[A-Za-z]+]: |: ):?(.*)",
+    "formatter": "([\\[\\/\\]:])",
+    "columns": "time,thread,level,class,info"
+  }
+}

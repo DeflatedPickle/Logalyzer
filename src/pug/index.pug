@@ -7,5 +7,21 @@ html
         link(href="index.css" rel="stylesheet")
         link(href="https://unpkg.com/tabulator-tables@4.4.3/dist/css/tabulator.min.css" rel="stylesheet")
     body
+        div.center
+            div.center
+                // TODO: Use a CSS grid
+                a RegEx:
+                select#re-select
+                    option(value="custom") Custom
+                    option(value="forge") Forge
+                input#re-pattern(type="text")
+                br
+                a Formatter:
+                input#re-formatter(type="text")
+                br
+                a Columns:
+                input#tb-columns(type="text")
+                br
+                button#tabulate Tabulate
         div#table.table
-        textarea#text
+        textarea#text(name="table")
