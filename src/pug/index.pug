@@ -8,7 +8,12 @@ html
         link(href="https://unpkg.com/tabulator-tables@4.4.3/dist/css/tabulator.min.css" rel="stylesheet")
         link(href="https://unpkg.com/tabulator-tables@4.4.3/dist/css/tabulator_midnight.min.css", rel="stylesheet")
     body
+        div#fork
+            a.center-label(href="https://github.com/DeflatedPickle/Logalyzer")#fork-link Fork Me On GitHub
+
         div.center
+            label#title.center-label Logalyzer
+            label#credit.center-label Made With; PugJS, TypeScript, CoffeeScript, SCSS and Tabulator
             div.center#grid
                 label#label-re-select RegEx:
                 select#re-select
@@ -22,8 +27,9 @@ html
                 label#label-tb-columns Columns:
                 input#tb-columns(type="text")
 
-                button#tabulate Tabulate
-
         div#grid-table
             div#table.table
             textarea#text(name="table")
+
+        div#footer
+            label.center-label Copyright (c) 2019 DeflatedPickle

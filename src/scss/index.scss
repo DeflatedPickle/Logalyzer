@@ -1,10 +1,21 @@
-@import url('https://fonts.googleapis.com/css?family=Inconsolata|Roboto+Mono:500&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Inconsolata|Roboto+Mono:500|Work+Sans:700&display=swap');
+
+body {
+  margin: 0;
+}
 
 body, input, select, textarea, button {
   // https://github.com/morhetz/gruvbox
   background: #282828;
   color: #EBDBB2;
-  border-color: #A89984;
+}
+
+div.tabulator-col-content, div.tabulator-cell {
+  color: #EBDBB2;
+}
+
+input, select, textarea, button {
+  border: 2px solid #A89984;
 
   padding: 2px;
   margin-top: 4px;
@@ -27,7 +38,11 @@ select:hover {
   background: #98971A;
 }
 
-label, div.tabulator-col-content {
+label, span, a {
+  user-select: none;
+}
+
+label, a, div.tabulator-col-content {
   font-family: 'Roboto Mono', monospace;
 }
 
@@ -58,6 +73,21 @@ button {
   padding: 10px;
 }
 
+.center-label {
+  display: block;
+  text-align: center;
+}
+
+#title {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 48px;
+}
+
+#credit {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 14px;
+}
+
 #grid {
   display: grid;
 }
@@ -71,4 +101,38 @@ button {
   // bottom: 0;
 
   height: 260px;
+}
+
+#footer {
+  background: #1D2021;
+
+  position: fixed;
+  bottom: 0;
+
+  width: 100%;
+}
+
+#fork {
+  padding: 12px;
+  background: #504945;
+  outline: none;
+
+  position: fixed;
+  top: 0;
+
+  width: 240px;
+
+  transform: translateX(-56px) translateY(24px) translateZ(0) rotate(-30deg);
+}
+
+#fork-link:link {
+  color: #D79921;
+}
+
+#fork-link:hover {
+  color: #458588;
+}
+
+#fork-link:visited {
+  color: #689D6A;
 }

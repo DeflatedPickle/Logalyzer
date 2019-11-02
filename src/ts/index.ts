@@ -4,6 +4,8 @@ const pascalcase = require('pascalcase');
 
 // JSON
 const regex = require("../json/regex.json");
+// Scripts
+require("../coffee/index.coffee");
 // Stylesheets
 const style = require("../scss/index.scss");
 
@@ -39,18 +41,6 @@ document.getElementById('re-select').addEventListener('change', (e) => {
     emptyTable(table, true);
 });
 
-document.getElementById('tabulate').addEventListener('click', () => {
-    const text = (<HTMLInputElement>document.getElementById('tb-columns')).value;
-
-    if (text != null) {
-        emptyTable(table);
-
-        for (let col of text.split(",")) {
-            table.addColumn({title: pascalcase(col), field: col})
-        }
-    }
-});
-
 document.getElementById('table').addEventListener('dragover', (e) => {
     e.stopPropagation();
     e.preventDefault();
@@ -64,10 +54,18 @@ document.getElementById('table').addEventListener("drop", (e) => {
     e.preventDefault();
 
     const regEx = new RegExp((<HTMLInputElement>document.getElementById('re-pattern')).value, 'g');
-
     const regExFormatter = new RegExp((<HTMLInputElement>document.getElementById('re-formatter')).value, 'g');
-
     const columns = (<HTMLInputElement>document.getElementById('tb-columns')).value.split(",");
+
+    const text = (<HTMLInputElement>document.getElementById('tb-columns')).value;
+
+    if (text != null) {
+        emptyTable(table);
+
+        for (let col of text.split(",")) {
+            table.addColumn({title: pascalcase(col), field: col})
+        }
+    }
 
     const fileList = e.dataTransfer.files;
 

@@ -34,6 +34,10 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
+                test: /\.coffee$/,
+                use: ["babel-loader", "coffee-loader"]
+            },
+            {
                 test: /\.(gif|png)$/,
                 loader: "file-loader"
             },
