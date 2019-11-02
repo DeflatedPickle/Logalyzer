@@ -7,18 +7,17 @@ html
         link(href="index.css" rel="stylesheet")
         link(href="https://unpkg.com/tabulator-tables@4.4.3/dist/css/tabulator.min.css" rel="stylesheet")
         link(href="https://unpkg.com/tabulator-tables@4.4.3/dist/css/tabulator_midnight.min.css", rel="stylesheet")
-    body
-        div#fork
-            a.center-label(href="https://github.com/DeflatedPickle/Logalyzer")#fork-link Fork Me On GitHub
 
+        script(async data-href="https://github.com/DeflatedPickle/Logalyzer" data-target="_blank" src="https://unpkg.com/github-corners@latest/dist/embed.min.js")
+    body
         div.center
             label#title.center-label Logalyzer
             label#credit.center-label Made With; PugJS, TypeScript, CoffeeScript, SCSS and Tabulator
             div.center#grid
-                label#label-re-select RegEx:
                 select#re-select
                     option(value="custom") Custom
                     option(value="forge") Forge
+                label#label-re-select RegEx:
                 textarea#re-pattern
 
                 label#label-re-formatter Formatter:
@@ -28,6 +27,7 @@ html
                 input#tb-columns(type="text")
 
         div#grid-table
+            span#holder
             div#table.table
             label#start Start:
             input#start-rows(type="text")
@@ -36,4 +36,4 @@ html
             textarea#text(name="table")
 
         div#footer
-            label.center-label Copyright (c) 2019 DeflatedPickle
+            label.center-label Copyright (c) 2019 DeflatedPickle | Inspired By MushMello's 'Forge Log Analyzer'

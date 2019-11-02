@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Inconsolata|Roboto+Mono:500|Work+Sans:700&display=swap');
 
 body {
-  margin: 0;
+  margin: 10px;
 }
 
 body, input, select, textarea, button {
@@ -127,4 +127,11 @@ button {
 
 #fork-link:visited {
   color: #689D6A;
+}
+
+#holder {
+  display: table;
+  margin: 0 auto;
+
+  font-size: 36px;
 }
