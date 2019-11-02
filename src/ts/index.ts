@@ -7,15 +7,27 @@ const regex = require("../json/regex.json");
 // Stylesheets
 const style = require("../scss/index.scss");
 
-// TODO: Allow columns to be defined on the page
 const table = new tabulator("#table", {
     height: 200,
     data: [],
-    layout: "fitColumns",
-    columns: []
+    layout: "fitData",
+    columns: [],
+    placeholder:"<center>Please, Tabulate Me.</center><br/> Then Kindly Drop A File On Me.",
 });
+
+function emptyTable(table: Tabulator, newColumn: boolean = false) {
+    for (const column of table.getColumns()) {
+        // @ts-ignore
+        column.delete();
+    }
+
+    if (newColumn) {
+        table.addColumn({title: "", field: ""});
+    }
+}
 emptyTable(table, true);
 
+// Event Listeners
 document.getElementById('re-select').addEventListener('change', (e) => {
     // @ts-ignore
     const dict = regex[e.target.value];
@@ -26,17 +38,6 @@ document.getElementById('re-select').addEventListener('change', (e) => {
 
     emptyTable(table, true);
 });
-
-function emptyTable(table: Tabulator, newColumn: boolean = false) {
-    for (const column of table.getColumns()) {
-        // @ts-ignore
-        column.delete();
-    }
-
-    if (newColumn) {
-        table.addColumn({title: "Please, Tabulate Me", field: ""});
-    }
-}
 
 document.getElementById('tabulate').addEventListener('click', () => {
     const text = (<HTMLInputElement>document.getElementById('tb-columns')).value;

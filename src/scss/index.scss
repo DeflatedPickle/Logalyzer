@@ -1,15 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Inconsolata|Roboto+Mono:500&display=swap');
+
+body, input, select, textarea, button {
+  // https://github.com/morhetz/gruvbox
+  background: #282828;
+  color: #EBDBB2;
+  border-color: #A89984;
+
+  padding: 2px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+::selection {
+  background: #458588;
+}
+
+button:hover {
+  background: #98971A;
+}
+
+button:focus {
+  background: #689D6A;
+}
+
+select:hover {
+  background: #98971A;
+}
+
+label, div.tabulator-col-content {
+  font-family: 'Roboto Mono', monospace;
+}
+
+input, select, textarea, button, span, div.tabulator-cell {
+  font-family: 'Inconsolata', monospace;
+}
+
 textarea {
   white-space: pre-wrap;
 
   width: 100%;
-  height: 260px;
 
   resize: none;
   overflow-y: scroll;
 }
 
+input, button {
+  font-size: 18px;
+}
+
+button {
+  padding: 10px;
+}
+
 .center {
   margin: auto;
-  width: 50%;
+  width: 80%;
   padding: 10px;
+}
+
+#grid {
+  display: grid;
+}
+
+#table {
+  height: 100%;
+}
+
+#text {
+  // position: absolute;
+  // bottom: 0;
+
+  height: 260px;
 }
